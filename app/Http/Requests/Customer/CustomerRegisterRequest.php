@@ -28,7 +28,7 @@ class CustomerRegisterRequest extends FormRequest
         return [
             'name'=> ['required'],
             'email'=> ['required', 'unique:customers,email'],
-            'phone' => ['required'],
+            'phone' => ['required', 'unique:customer_phones,phone'],
             'password'=> [
                 'required','string',
                 Password::min(8)->mixedCase()->numbers()->symbols()->uncompromised(),

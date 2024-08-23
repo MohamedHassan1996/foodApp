@@ -45,7 +45,7 @@ class AuthController extends Controller
 
             $token = $this->authService->login($loginReq->validated());
 
-            if(!$token['success']){
+            if(isset($token['success']) && !$token['success']){
 
                 return ResponseHelper::error($token['message'], StatusCode::UNAUTHORIZED);
             }

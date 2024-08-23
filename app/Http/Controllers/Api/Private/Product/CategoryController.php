@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Private\Category;
+namespace App\Http\Controllers\Api\Private\Product;
 
 use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;

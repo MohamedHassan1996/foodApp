@@ -40,7 +40,7 @@ class CustomerAuthController extends Controller
 
             Mail::to($customer->email)->send(new VerificationCodeMail($content));
 
-            return ResponseHelper::success([], 'تم التسجيل بنجاح من فضلك تحقق من البريد الالكترونى');
+            return ResponseHelper::success([], 'customerAuth.success_register');
 
         } catch (Throwable $th) {
             return ResponseHelper::error($th->getMessage(), StatusCode::INTERNAL_SERVER_ERROR);
@@ -55,7 +55,7 @@ class CustomerAuthController extends Controller
 
             if($verifiedCustomer['success']){
 
-                return ResponseHelper::success($verifiedCustomer, 'تم التفعيل بنجاح');
+                return ResponseHelper::success([], 'customerAuth.success_verify');
             }
 
             return ResponseHelper::error($verifiedCustomer['message'], StatusCode::UNAUTHORIZED);
@@ -73,7 +73,7 @@ class CustomerAuthController extends Controller
         try {
             $customerToken = $this->customerAuthService->login($customerLoginRequest->validated());
 
-            if($customerToken['success'] == false){
+            if(isset($customerToken['success']) && !$customerToken['success']){
 
                 return ResponseHelper::error($customerToken['message'], StatusCode::UNAUTHORIZED);
 

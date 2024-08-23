@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\Private\Product\CategoryController;
+use App\Http\Controllers\Api\Private\User\UserController;
 use App\Http\Controllers\Api\Public\Auth\AuthController;
 use App\Http\Controllers\Api\Public\Auth\CustomerAuthController;
+use App\Models\Product\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,5 +29,22 @@ Route::prefix('v1/admin/auth')->group(function(){
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout']);
+});
+
+Route::prefix('v1/admin/users')->group(function(){
+    Route::get('', [UserController::class, 'allUsers']);
+    Route::post('create', [UserController::class, 'create']);
+    Route::get('edit', [UserController::class, 'edit']);
+    Route::put('update', [UserController::class, 'update']);
+    Route::delete('delete', [UserController::class, 'delete']);
+    Route::put('changestatus', [UserController::class, 'changeStatus']);
+});
+
+Route::prefix('v1/admin/categories')->group(function(){
+    Route::get('', [CategoryController::class, 'allCategories']);
+    Route::post('create', [CategoryController::class, 'create']);
+    Route::get('edit', [CategoryController::class, 'edit']);
+    Route::put('update', [CategoryController::class, 'update']);
+    Route::delete('delete', [CategoryController::class, 'delete']);
 });
 

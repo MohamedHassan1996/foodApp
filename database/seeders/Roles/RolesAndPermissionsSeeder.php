@@ -17,6 +17,12 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // premissions
         $permissions = [
+            'all_roles',
+            'create_role',
+            'edit_role',
+            'update_role',
+            'delete_role',
+
             'all_users',
             'create_user',
             'edit_user',
@@ -24,22 +30,11 @@ class RolesAndPermissionsSeeder extends Seeder
             'delete_user',
             'change_user_status',
 
-            'all_roles',
-            'create_role',
-            'edit_role',
-            'update_role',
-            'delete_role',
-
-            'all_companies',
-            'create_company',
-            'edit_company',
-            'update_company',
-            'delete_company',
-
-            'create_branch',
-            'edit_branch',
-            'update_branch',
-            'delete_branch',
+            'all_categories',
+            'create_category',
+            'edit_category',
+            'update_category',
+            'delete_category',
 
             'all_customers',
             'create_customer',
@@ -47,11 +42,6 @@ class RolesAndPermissionsSeeder extends Seeder
             'update_customer',
             'delete_customer',
 
-            'all_tickets',
-            'create_ticket',
-            'edit_ticket',
-            'update_ticket',
-            'delete_ticket',
         ];
 
         foreach ($permissions as $permission) {
