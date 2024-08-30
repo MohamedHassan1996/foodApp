@@ -11,6 +11,7 @@ use App\Http\Requests\Customer\CustomerRegisterRequest;
 use App\Mail\VerificationCodeMail;
 use App\Models\VerificationCode\VerificationCode;
 use App\Services\Auth\CustomerAuthService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Throwable;
 
@@ -99,4 +100,19 @@ class CustomerAuthController extends Controller
         }
     }
 
+    public function sendOtp(Request $request)
+    {
+
+        try {
+
+            $resend = $this->customerAuthService->sendOtp($request->all());
+
+            Mail::to($resend['email'])->send(new VerificationCodeMail($resend));
+
+            return ResponseHelper::success($resend, 'activationCode.code');
+
+        } catch (Throwable $th) {
+            return ResponseHelper::error($th->getMessage(), StatusCode::INTERNAL_SERVER_ERROR);
+        }
+    }
 }

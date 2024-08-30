@@ -27,7 +27,7 @@ class CustomerRegisterRequest extends FormRequest
     {
         return [
             'name'=> ['required'],
-            'email'=> ['required', 'unique:customers,email'],
+            'email'=> ['required', 'email', 'unique:customers,email'],
             'phone' => ['required', 'unique:customer_phones,phone'],
             'password'=> [
                 'required','string',

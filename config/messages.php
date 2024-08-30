@@ -11,6 +11,7 @@ return [
     ],
     'activationCode' => [
         'invalid_code' => 'هذا الكود غير صالح',
+        'code' => 'تم ارسال الكود للبريد',
     ],
     'customer' => [
         'created_success' => 'Customer created successfully',

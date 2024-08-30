@@ -37,4 +37,6 @@ class VerificationCode extends Model
             $model->expires_at = Carbon::now()->addMinutes(10);
         });
     }
+
+
 }

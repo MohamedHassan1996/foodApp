@@ -105,5 +105,29 @@ class CustomerAuthService implements AuthServiceInterface, VerifyEmailServiceInt
         return ['success' => true];
     }
 
+    public function sendOtp(array $data)
+    {
+
+        $customer = Customer::where('email', $data['email'])->first();
+        if (!$customer) {
+            return [
+                'success' => false,
+                'message' => 'customerAuth.invalid_account',
+            ];
+        }
+
+        $verificationCode = VerificationCode::create([
+            'customer_id' => $customer->id,
+        ]);
+
+        $content = [
+            'body' => $verificationCode->code,
+            'email' => $customer->email
+        ];
+
+        return $content;
+
+    }
+
 
 }
